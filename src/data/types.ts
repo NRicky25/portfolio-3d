@@ -1,4 +1,4 @@
-export type SceneKind = 'bars' | 'documents' | 'pipeline' | 'stream' | 'boxes' | 'outlier'
+export type SceneKind = 'bars' | 'documents' | 'pipeline' | 'gateway' | 'boxes' | 'outlier'
 
 export interface ProjectGroup {
   title: string
@@ -23,6 +23,10 @@ export interface Project {
   scene: SceneKind
   stack: string[]
   accent: string
+  /** paid client work (shows a badge) */
+  client?: boolean
+  /** public URL of the live product */
+  liveUrl?: string
 }
 
 export interface Experience {

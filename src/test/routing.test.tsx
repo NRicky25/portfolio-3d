@@ -32,8 +32,8 @@ describe('routing', () => {
   })
 
   it('renders a project detail page', () => {
-    renderAt('/projects/kafka-pipeline')
-    expect(screen.getByRole('heading', { level: 1, name: 'Kafka Streaming Pipeline' })).toBeInTheDocument()
+    renderAt('/projects/monogate-consulting')
+    expect(screen.getByRole('heading', { level: 1, name: 'MONOGATE Consulting Website' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Features' })).toBeInTheDocument()
   })
 

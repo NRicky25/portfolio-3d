@@ -52,7 +52,7 @@ function Documents({ color }: { color: string }) {
   )
 }
 
-// Particles travelling along a path; used for the data pipeline and Kafka stream
+// Particles travelling along a path; used for the data pipeline and the gateway
 function Flow({ color, nodes, count, spread }: { color: string; nodes: boolean; count: number; spread: number }) {
   const pts = useRef<THREE.Points>(null)
   const seeds = useMemo(() => Array.from({ length: count }, () => [Math.random(), Math.random() * 2 - 1, Math.random() * 2 - 1, 0.3 + Math.random() * 0.7]), [count])
@@ -83,6 +83,31 @@ function Flow({ color, nodes, count, spread }: { color: string; nodes: boolean; 
             <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.6} wireframe />
           </mesh>
         ))}
+    </group>
+  )
+}
+
+// MONOGATE: capital flowing through a glowing gateway ring
+function Gateway({ color }: { color: string }) {
+  const ring = useRef<THREE.Group>(null)
+  useFrame(({ clock }) => {
+    if (!ring.current) return
+    ring.current.rotation.z = clock.elapsedTime * 0.4
+    ring.current.scale.setScalar(1 + Math.sin(clock.elapsedTime * 2) * 0.03)
+  })
+  return (
+    <group rotation={[0, -0.9, 0]}>
+      <group ref={ring}>
+        <mesh>
+          <torusGeometry args={[1.1, 0.07, 16, 64]} />
+          <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.9} metalness={0.6} roughness={0.25} />
+        </mesh>
+        <mesh>
+          <torusGeometry args={[1.35, 0.015, 8, 64]} />
+          <meshBasicMaterial color={color} transparent opacity={0.5} />
+        </mesh>
+      </group>
+      <Flow color={color} nodes={false} count={260} spread={0.45} />
     </group>
   )
 }
@@ -159,8 +184,8 @@ function SceneFor({ kind, color }: Props) {
       return <Documents color={color} />
     case 'pipeline':
       return <Flow color={color} nodes count={140} spread={0.12} />
-    case 'stream':
-      return <Flow color={color} nodes={false} count={420} spread={0.5} />
+    case 'gateway':
+      return <Gateway color={color} />
     case 'boxes':
       return <Boxes color={color} />
     case 'outlier':

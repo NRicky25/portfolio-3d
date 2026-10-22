@@ -42,7 +42,7 @@ function linkify(text: string, links: string[] = []) {
 }
 
 function Section({ s, accent }: { s: ProjectSection; accent: string }) {
-  const isRepo = s.heading === 'Repositories'
+  const isRepo = !!s.links?.length
   return (
     <motion.section {...reveal} className="mt-16">
       <h2 className="mb-6 flex items-center gap-3 font-display text-2xl font-semibold text-white md:text-3xl">
@@ -149,6 +149,32 @@ export default function ProjectDetail() {
         >
           {project.summary}
         </motion.p>
+
+        {(project.client || project.liveUrl) && (
+          <motion.div
+            className="mt-8 flex flex-wrap items-center gap-3"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            {project.client && (
+              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-300/30 bg-emerald-400/10 px-4 py-2 font-mono text-xs text-emerald-200">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-300" aria-hidden />
+                Freelance client project
+              </span>
+            )}
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full bg-gradient-to-r from-violet-500 to-cyan-400 px-5 py-2 text-sm font-medium text-space shadow-[0_0_30px_-6px_rgba(139,92,246,0.9)] transition hover:scale-105"
+              >
+                Visit live site ↗
+              </a>
+            )}
+          </motion.div>
+        )}
 
         <motion.div
           className="mt-12 overflow-hidden rounded-3xl border border-white/10"

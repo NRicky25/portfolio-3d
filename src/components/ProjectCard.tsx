@@ -72,6 +72,12 @@ export default function ProjectCard({ project, index, rich }: Props) {
             </div>
           )}
           <span className="pop absolute left-5 top-4 font-mono text-xs text-white/60">{String(index + 1).padStart(2, '0')}</span>
+          {project.client && (
+            <span className="pop absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-emerald-300/30 bg-emerald-400/15 px-3 py-1 font-mono text-[11px] font-medium text-emerald-200 backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-300 shadow-[0_0_8px_2px_rgba(110,231,183,0.7)]" aria-hidden />
+              Client work · Live
+            </span>
+          )}
         </div>
 
         <div className="relative p-6 md:p-7">

@@ -1,5 +1,90 @@
 [
   {
+    "slug": "monogate-consulting",
+    "title": "MONOGATE Consulting Website",
+    "summary": "Freelance build of the live, multilingual website for MONOGATE Consulting, an investment advisory firm in Cambodia. Investors can explore services and sectors, read investment news in English, Khmer or Chinese, and book a consultation online.",
+    "cover": "/projects/monogate.jpg",
+    "sections": [
+      {
+        "heading": "Project Brief",
+        "paragraphs": [
+          "MONOGATE Consulting helps foreign investors enter, operate, and grow in Cambodia. I designed and built their company website as a freelance project: a fast, SEO-friendly Next.js site that presents their services and sectors, publishes investment news, and turns visitors into booked consultations, available in three languages."
+        ]
+      },
+      {
+        "heading": "Live Site",
+        "items": [
+          "Website: https://www.monogateconsulting.com.kh/en"
+        ],
+        "links": [
+          "https://www.monogateconsulting.com.kh/en"
+        ]
+      },
+      {
+        "heading": "Approach",
+        "groups": [
+          {
+            "title": "Client & Goals",
+            "items": [
+              "Worked directly with the client to turn their service offering into a clear, trustworthy web presence for investors",
+              "Prioritised credibility, clarity, and an easy path to booking a consultation"
+            ]
+          },
+          {
+            "title": "Multilingual Experience",
+            "items": [
+              "Full English, Khmer, and Chinese versions with locale-based routes (/en, /km, /zh)",
+              "Language switcher available on every page so investors can read in their own language"
+            ]
+          },
+          {
+            "title": "Content & Structure",
+            "items": [
+              "Home, About, Services, Sectors, and Contact pages built from reusable sections",
+              "Seven service offerings and four sector focus areas, each with a clear call to action",
+              "News & Events feed with category filters (Investment Data, Regulation, Tax Incentive)"
+            ]
+          },
+          {
+            "title": "Consultation Booking",
+            "items": [
+              "Dedicated booking flow: choose a service, enter contact details, and pick a date and time",
+              "Quick-contact buttons for Telegram, WeChat, and live chat on every page"
+            ]
+          },
+          {
+            "title": "Performance & SEO",
+            "items": [
+              "Built on Next.js with optimised, responsive images via next/image",
+              "Per-page titles and metadata for search visibility across languages"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Features",
+        "items": [
+          "Multilingual: English, Khmer, and Chinese with locale routing",
+          "Consultation Booking: service selection with date and time picker",
+          "News & Events: categorised investment and regulation updates",
+          "Services & Sectors: structured pages for each offering",
+          "Instant Contact: Telegram, WeChat, and live chat shortcuts",
+          "Responsive: polished layouts from mobile to desktop"
+        ]
+      },
+      {
+        "heading": "Tools & Technologies",
+        "tags": [
+          "Next.js",
+          "React",
+          "Tailwind CSS",
+          "i18n (EN / KM / ZH)",
+          "Git"
+        ]
+      }
+    ]
+  },
+  {
     "slug": "financeflow-personal-finance-tracker",
     "title": "FinanceFlow — Personal Finance Tracker",
     "summary": "A full-stack personal finance platform that lets users track expenses, categories, and reports, with a scalable FastAPI backend, Firestore storage, and a modern React frontend.",
@@ -305,108 +390,6 @@
           "Docker",
           "docker-compose",
           "GitHub Actions"
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "kafka-pipeline",
-    "title": "Kafka Streaming Pipeline",
-    "summary": "The system simulates transaction events (purchases by customers) and processes them through a Kafka topic. A consumer application stores both the raw transactions and aggregated per-customer totals in PostgreSQL.",
-    "cover": "/projects/kafka-pipeline.png",
-    "sections": [
-      {
-        "heading": "Project Brief",
-        "paragraphs": [
-          "A streaming data pipeline that demonstrates ingestion, real-time processing, and storage using Java, Apache Kafka, and PostgreSQL. The system simulates transactions flowing through Kafka topics, with producers generating events and consumers persisting raw and aggregated data to a database."
-        ]
-      },
-      {
-        "heading": "Repositories",
-        "items": [
-          "Backend: https://github.com/NRicky25/kafka-pipeline"
-        ],
-        "links": [
-          "https://github.com/NRicky25/kafka-pipeline"
-        ]
-      },
-      {
-        "heading": "Approach",
-        "groups": [
-          {
-            "title": "Planning & Objectives",
-            "items": [
-              "Planned the project to simulate a real-time data streaming environment using Kafka as the backbone for event-driven communication",
-              "Defined core goal: demonstrate ingestion, processing, and storage of continuous data streams with reproducibility and clarity",
-              "Outlined producer–consumer flow architecture to ensure modularity and ease of testing"
-            ]
-          },
-          {
-            "title": "Architecture Design",
-            "items": [
-              "Designed the pipeline around two main components: Kafka Producer and Kafka Consumer, communicating via a common topic",
-              "Kafka Producer: responsible for generating synthetic transaction events (UUID, timestamp, customer ID, category, amount)",
-              "Kafka Consumer: reads each event from the topic, writes raw records into `transactions_raw`, and updates aggregates in `customer_agg`",
-              "Used Docker Compose to spin up Kafka, Zookeeper, and PostgreSQL for a reproducible local setup"
-            ]
-          },
-          {
-            "title": "Implementation Strategy",
-            "items": [
-              "Developed producer and consumer as standalone Java applications using the Kafka client library",
-              "Used Gradle for dependency management and build automation",
-              "Implemented robust serialization/deserialization and ensured consumer idempotency for duplicate event handling",
-              "Added configuration files for topic names, partition count, and bootstrap servers to keep environment variables flexible"
-            ]
-          },
-          {
-            "title": "Testing & Validation",
-            "items": [
-              "Tested producer output for consistent event schema and message frequency",
-              "Verified consumer processing logic by comparing record counts between Kafka topics and PostgreSQL tables",
-              "Conducted aggregation validation — ensuring customer-level totals matched individual transaction sums"
-            ]
-          },
-          {
-            "title": "Deployment & Containerization",
-            "items": [
-              "Containerized the full environment with Docker Compose for one-command setup and teardown",
-              "Validated connectivity between containers (Producer → Kafka → Consumer → Postgres)",
-              "Ensured logs were viewable across services for debugging and performance tuning"
-            ]
-          },
-          {
-            "title": "Project Duration (Estimate)",
-            "items": [
-              "Part-time (evenings/weekends): 4–6 weeks total",
-              "1 week — setup & architecture design",
-              "2 weeks — implementation of producer, consumer, and database logic",
-              "1–2 weeks — testing, debugging, and Docker environment polish"
-            ]
-          }
-        ]
-      },
-      {
-        "heading": "Features",
-        "items": [
-          "Kafka Producer: synthetic transaction events (UUID, time, amount, category)",
-          "Kafka Consumer: persistence to PostgreSQL with raw + aggregates",
-          "Real-time Aggregation: per-customer totals and counts",
-          "Configurable Topics: bootstrap servers, partitions, and retention",
-          "Docker Compose: Kafka, Zookeeper, and Postgres for local dev",
-          "Validation: record counts and aggregation checks across components"
-        ]
-      },
-      {
-        "heading": "Tools & Technologies",
-        "tags": [
-          "Java",
-          "Apache Kafka",
-          "PostgreSQL",
-          "Docker",
-          "Gradle",
-          "Git",
-          "GitHub"
         ]
       }
     ]
