@@ -1,0 +1,660 @@
+[
+  {
+    "slug": "financeflow-personal-finance-tracker",
+    "title": "FinanceFlow — Personal Finance Tracker",
+    "summary": "A full-stack personal finance platform that lets users track expenses, categories, and reports, with a scalable FastAPI backend, Firestore storage, and a modern React frontend.",
+    "cover": "/projects/financeflow.png",
+    "sections": [
+      {
+        "heading": "Project Brief",
+        "paragraphs": [
+          "FinanceFlow is a full-stack personal finance tracker that helps users manage expenses, categories, budgets, and financial insights. It’s built with a production-style FastAPI backend, Firestore as the NoSQL database, and a React frontend, focusing on clean architecture, secure auth, and cloud deployment."
+        ]
+      },
+      {
+        "heading": "Project Duration (Estimate)",
+        "paragraphs": [
+          "In progress; built part-time alongside internship and other projects."
+        ]
+      },
+      {
+        "heading": "Repositories",
+        "items": [
+          "Frontend: https://financeflow-fe.netlify.app/",
+          "Backend: https://github.com/DreamRootLabs/FinanceFlow--BE"
+        ],
+        "links": [
+          "https://financeflow-fe.netlify.app/",
+          "https://github.com/DreamRootLabs/FinanceFlow--BE"
+        ]
+      },
+      {
+        "heading": "Approach",
+        "groups": [
+          {
+            "title": "Planning & Goals",
+            "items": [
+              "Defined the core workflow around tracking daily spending, categories, and summaries that actually help users see where their money goes.",
+              "Designed the app to feel like a lightweight SaaS product, not a toy script.",
+              "Planned for future features: budgets, recurring transactions, and insights dashboards."
+            ]
+          },
+          {
+            "title": "System Design & Architecture",
+            "items": [
+              "Backend: FastAPI with a clear layering: api/ → services/ → repos/ → models/.",
+              "Database: Google Firestore (NoSQL) with user-scoped collections for categories and transactions.",
+              "Auth: JWT-based authentication with support for demo users (no signup friction).",
+              "Frontend: React + Vite with Axios API client and persistent auth token handling."
+            ]
+          },
+          {
+            "title": "Implementation Workflow",
+            "items": [
+              "Started from the data model: users, categories, transactions, and reports.",
+              "Implemented REST APIs for CRUD on categories and transactions, plus reporting endpoints.",
+              "Used Pydantic schemas for strict request/response validation and clear API contracts.",
+              "Integrated the frontend with a centralized Axios instance and protected routes."
+            ]
+          },
+          {
+            "title": "Demo Mode & Onboarding",
+            "items": [
+              "Implemented a Demo Mode login that returns a short-lived JWT and demo user ID.",
+              "On first demo login, auto-seeds default categories (Food, Rent, Transport, etc.).",
+              "Creates sample transactions so users immediately see charts and tables populated."
+            ]
+          },
+          {
+            "title": "Deployment & Environments",
+            "items": [
+              "Containerized the backend with Docker for reproducible local and cloud runs.",
+              "Deployed the API to Google Cloud Run using service accounts and env vars.",
+              "Separated local vs production configs via environment variables (origins, keys, project IDs)."
+            ]
+          },
+          {
+            "title": "Testing & Quality Assurance",
+            "items": [
+              "Smoke-tested core endpoints: auth, categories, transactions, and reports.",
+              "Verified CORS behaviour between local frontend and Cloud Run backend.",
+              "Manual UX walkthroughs: first-time demo user → add category → add transaction → view reports."
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Features",
+        "items": [
+          "User Authentication: JWT-based auth with standard users and demo users.",
+          "Categories: Create, edit, and delete expense categories linked to each user.",
+          "Transactions: Add income/expense records with amount, date, and category.",
+          "Reports & Summaries: Simple spending summaries by category and date range.",
+          "Demo Mode: One-click demo login with pre-seeded data for instant exploration.",
+          "Cloud-Hosted API: FastAPI backend running on Google Cloud Run.",
+          "Secure API Integration: Axios client with token injection and CORS-safe configuration.",
+          "Extensible Architecture: Service/repo pattern ready for future features like budgets and exports."
+        ]
+      },
+      {
+        "heading": "Tools & Technologies",
+        "tags": [
+          "Python",
+          "FastAPI",
+          "Pydantic",
+          "Google Firestore",
+          "Firebase Admin SDK",
+          "React",
+          "TypeScript",
+          "Vite",
+          "Axios",
+          "Docker",
+          "Google Cloud Run",
+          "Git",
+          "GitHub",
+          "Loguru"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "invoice-saas",
+    "title": "Invoice Management SaaS (Xero-inspired)",
+    "summary": "A multi-tenant invoicing SaaS inspired by Xero. Users can create invoices, manage contacts, generate invoices from templates, preview PDFs, and control editing via Draft/Sent/Paid states with clean, reusable UI components.",
+    "cover": "/projects/invoice-saas.png",
+    "sections": [
+      {
+        "heading": "Project Brief",
+        "paragraphs": [
+          "A production-grade invoicing SaaS inspired by Xero, built with React/Next.js and TypeScript. The app focuses on clean component architecture, strict typing, and state-driven permissions across the invoice lifecycle (Draft/Sent/Paid). It supports invoice generation with customizable templates and live preview, and integrates with Supabase for authentication and data storage."
+        ]
+      },
+      {
+        "heading": "Repositories",
+        "items": [
+          "Frontend: Repository is private during active development. I can provide read-only access on request."
+        ]
+      },
+      {
+        "heading": "Approach",
+        "groups": [
+          {
+            "title": "Planning & Product Goals",
+            "items": [
+              "Designed an MVP around real invoicing workflows: dashboard → invoice view → create/edit → send → read-only states",
+              "Prioritized low-click UX, predictable UI behavior, and clear permission boundaries over unnecessary complexity",
+              "Defined invoice lifecycle states (Draft / Sent / Paid) as the source of truth for UI editing rules"
+            ]
+          },
+          {
+            "title": "Frontend Architecture",
+            "items": [
+              "Built a component-driven UI with reusable building blocks (invoice header, line items, totals, status actions)",
+              "Implemented strict TypeScript types across invoices, contacts, items, and totals to reduce runtime edge cases",
+              "Used design-system patterns for consistent spacing, typography, and form controls"
+            ]
+          },
+          {
+            "title": "Invoice Generation & Templates",
+            "items": [
+              "Implemented invoice generation using template-based layouts with a clear separation between editable form state and rendered output",
+              "Added custom template support (branding, layout variations) to allow different invoice styles per organization",
+              "Built an invoice preview flow so users can review the final output before sending or exporting"
+            ]
+          },
+          {
+            "title": "Backend & Data Model",
+            "items": [
+              "Integrated Supabase authentication and multi-tenant data access patterns",
+              "Modeled core entities: contacts, invoices, invoice_lines, templates/branding, and status transitions",
+              "Implemented API integration with robust loading, error, and empty-state handling in the UI"
+            ]
+          },
+          {
+            "title": "Quality & Deployment",
+            "items": [
+              "Validated key workflows end-to-end (create invoice, edit draft, lock sent invoices, template preview, status changes)",
+              "Kept changes reviewable by following existing patterns and avoiding inline hacks"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Features",
+        "items": [
+          "Invoice lifecycle states: Draft / Sent / Paid with edit-permission boundaries",
+          "Invoice generation with customizable templates and branding",
+          "Invoice preview before export/send",
+          "Reusable UI components (header, line items, totals, actions)",
+          "Contact management and invoice creation workflows",
+          "API integration with clean async state (loading/error/empty states)",
+          "Multi-tenant authentication and secure data separation (Supabase)",
+          "Responsive UI with a consistent design system approach"
+        ]
+      },
+      {
+        "heading": "Tools & Technologies",
+        "tags": [
+          "React",
+          "Next.js",
+          "TypeScript",
+          "MUI",
+          "Tailwind CSS",
+          "Supabase",
+          "PostgreSQL",
+          "Git",
+          "GitHub",
+          "Netlify"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "retail-data-platform",
+    "title": "Retail Data Platform",
+    "summary": "This project is a demo data platform architecture built to simulate a retail environment. It demonstrates ingestion, storage, transformation, and analytics using modern data engineering tools.",
+    "cover": "/projects/airflow.png",
+    "sections": [
+      {
+        "heading": "Project Brief",
+        "paragraphs": [
+          "A demo data platform that simulates a retail environment. It showcases ingestion, storage, transformations with dbt, orchestration with Airflow, analytics in Streamlit, CI/CD with GitHub Actions, and documentation (architecture + lineage)."
+        ]
+      },
+      {
+        "heading": "Approach",
+        "groups": [
+          {
+            "title": "Planning & Goals",
+            "items": [
+              "Framed the project as an end-to-end data engineering demo for a retail analytics pipeline",
+              "Defined key objectives: simulate data ingestion → transformation → analytics using modern data stack tools",
+              "Outlined modular architecture to support reproducibility and scalability (Dockerized services)"
+            ]
+          },
+          {
+            "title": "Architecture Design",
+            "items": [
+              "Planned containerized setup for Postgres, Airflow, and Streamlit for isolated, reproducible environments",
+              "Chose dbt for SQL-based transformations, testing, and lineage tracking",
+              "Mapped daily orchestration DAG in Airflow to automate ingestion → load → transform → test"
+            ]
+          },
+          {
+            "title": "Implementation",
+            "items": [
+              "Developed Python ingestion script using Faker to generate synthetic retail data (customers, products, sales)",
+              "Loaded datasets into Postgres via batch pipeline and validated integrity with dbt tests",
+              "Implemented dbt models (staging + marts) to create curated, analytics-ready tables",
+              "Configured Airflow DAG to automate end-to-end pipeline runs"
+            ]
+          },
+          {
+            "title": "Visualization & Analytics",
+            "items": [
+              "Built Streamlit dashboard to visualize KPIs like daily revenue, top categories, and customer segmentation",
+              "Integrated aggregated tables from dbt for real-time metric refreshes",
+              "Ensured dashboard responsiveness and lightweight deployment for demos"
+            ]
+          },
+          {
+            "title": "Testing & CI/CD",
+            "items": [
+              "Created dbt test suite: not_null, unique, relationships, and accepted_values constraints",
+              "Automated dbt parse + Python lint on each commit using GitHub Actions",
+              "Used small synthetic datasets for quick regression validation of DAG and models"
+            ]
+          },
+          {
+            "title": "Deployment & Documentation",
+            "items": [
+              "Deployed the stack locally via Docker Compose for consistent multi-container orchestration",
+              "Documented architecture with diagrams (Airflow DAG, dbt lineage, Streamlit screenshots)",
+              "Configured environment variables (.env) for database connections and credentials"
+            ]
+          },
+          {
+            "title": "Project Duration (Estimate)",
+            "items": [
+              "Part-time (evenings/weekends): 6–8 weeks for full pipeline (data → dbt → Airflow → Streamlit)",
+              "Additional 2–3 weeks for CI/CD integration, documentation, and dashboard polishing"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Features",
+        "items": [
+          "Synthetic Ingestion: Python + Faker to generate retail datasets",
+          "Data Warehouse: PostgreSQL with staged → marts layers",
+          "Transformations: dbt models with tests and lineage",
+          "Orchestration: Airflow DAG (generate → load → dbt run/test)",
+          "Analytics: Streamlit dashboard for KPIs & trends",
+          "CI/CD: GitHub Actions for dbt parse & Python lint",
+          "Docs: architecture diagram and lineage screenshots"
+        ]
+      },
+      {
+        "heading": "Tools & Technologies",
+        "tags": [
+          "Python 3.12",
+          "Postgres 14",
+          "dbt-postgres",
+          "Apache Airflow 2.9",
+          "Streamlit",
+          "Docker",
+          "docker-compose",
+          "GitHub Actions"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "kafka-pipeline",
+    "title": "Kafka Streaming Pipeline",
+    "summary": "The system simulates transaction events (purchases by customers) and processes them through a Kafka topic. A consumer application stores both the raw transactions and aggregated per-customer totals in PostgreSQL.",
+    "cover": "/projects/kafka-pipeline.png",
+    "sections": [
+      {
+        "heading": "Project Brief",
+        "paragraphs": [
+          "A streaming data pipeline that demonstrates ingestion, real-time processing, and storage using Java, Apache Kafka, and PostgreSQL. The system simulates transactions flowing through Kafka topics, with producers generating events and consumers persisting raw and aggregated data to a database."
+        ]
+      },
+      {
+        "heading": "Repositories",
+        "items": [
+          "Backend: https://github.com/NRicky25/kafka-pipeline"
+        ],
+        "links": [
+          "https://github.com/NRicky25/kafka-pipeline"
+        ]
+      },
+      {
+        "heading": "Approach",
+        "groups": [
+          {
+            "title": "Planning & Objectives",
+            "items": [
+              "Planned the project to simulate a real-time data streaming environment using Kafka as the backbone for event-driven communication",
+              "Defined core goal: demonstrate ingestion, processing, and storage of continuous data streams with reproducibility and clarity",
+              "Outlined producer–consumer flow architecture to ensure modularity and ease of testing"
+            ]
+          },
+          {
+            "title": "Architecture Design",
+            "items": [
+              "Designed the pipeline around two main components: Kafka Producer and Kafka Consumer, communicating via a common topic",
+              "Kafka Producer: responsible for generating synthetic transaction events (UUID, timestamp, customer ID, category, amount)",
+              "Kafka Consumer: reads each event from the topic, writes raw records into `transactions_raw`, and updates aggregates in `customer_agg`",
+              "Used Docker Compose to spin up Kafka, Zookeeper, and PostgreSQL for a reproducible local setup"
+            ]
+          },
+          {
+            "title": "Implementation Strategy",
+            "items": [
+              "Developed producer and consumer as standalone Java applications using the Kafka client library",
+              "Used Gradle for dependency management and build automation",
+              "Implemented robust serialization/deserialization and ensured consumer idempotency for duplicate event handling",
+              "Added configuration files for topic names, partition count, and bootstrap servers to keep environment variables flexible"
+            ]
+          },
+          {
+            "title": "Testing & Validation",
+            "items": [
+              "Tested producer output for consistent event schema and message frequency",
+              "Verified consumer processing logic by comparing record counts between Kafka topics and PostgreSQL tables",
+              "Conducted aggregation validation — ensuring customer-level totals matched individual transaction sums"
+            ]
+          },
+          {
+            "title": "Deployment & Containerization",
+            "items": [
+              "Containerized the full environment with Docker Compose for one-command setup and teardown",
+              "Validated connectivity between containers (Producer → Kafka → Consumer → Postgres)",
+              "Ensured logs were viewable across services for debugging and performance tuning"
+            ]
+          },
+          {
+            "title": "Project Duration (Estimate)",
+            "items": [
+              "Part-time (evenings/weekends): 4–6 weeks total",
+              "1 week — setup & architecture design",
+              "2 weeks — implementation of producer, consumer, and database logic",
+              "1–2 weeks — testing, debugging, and Docker environment polish"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Features",
+        "items": [
+          "Kafka Producer: synthetic transaction events (UUID, time, amount, category)",
+          "Kafka Consumer: persistence to PostgreSQL with raw + aggregates",
+          "Real-time Aggregation: per-customer totals and counts",
+          "Configurable Topics: bootstrap servers, partitions, and retention",
+          "Docker Compose: Kafka, Zookeeper, and Postgres for local dev",
+          "Validation: record counts and aggregation checks across components"
+        ]
+      },
+      {
+        "heading": "Tools & Technologies",
+        "tags": [
+          "Java",
+          "Apache Kafka",
+          "PostgreSQL",
+          "Docker",
+          "Gradle",
+          "Git",
+          "GitHub"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "ecommerce-website",
+    "title": "E-commerce Website",
+    "summary": "A fully responsive e-commerce platform with seamless user experience, featuring dynamic product listings, secure payment integration, and a modern design",
+    "cover": "/projects/queen-shop.png",
+    "sections": [
+      {
+        "heading": "Project Brief",
+        "paragraphs": [
+          "Queen Shop is a full-stack e-commerce application designed to provide a seamless shopping experience. It demonstrates a robust backend, a dynamic frontend, secure payment processing, and scalable cloud deployment—covering the workflow from product browsing to order fulfillment."
+        ]
+      },
+      {
+        "heading": "Repositories",
+        "items": [
+          "Frontend: https://github.com/NRicky25/queen-shop",
+          "Backend: https://github.com/NRicky25/queen-shop"
+        ],
+        "links": [
+          "https://github.com/NRicky25/queen-shop",
+          "https://github.com/NRicky25/queen-shop"
+        ]
+      },
+      {
+        "heading": "Approach",
+        "groups": [
+          {
+            "title": "Planning & Goals",
+            "items": [
+              "Outlined the MVP scope around a complete commerce flow: browse → product details → cart → checkout → order confirmation",
+              "Focused on functionality first with room for reviews, wishlists, coupons",
+              "Separated buyer vs admin requirements to guide architecture"
+            ]
+          },
+          {
+            "title": "System Design & Architecture",
+            "items": [
+              "Frontend: React + Tailwind CSS",
+              "Backend: Node.js + Express (/products, /cart, /orders, /auth)",
+              "Database: MongoDB",
+              "Payments: Stripe (client secret + optional webhook)",
+              "Media: Cloudinary (responsive transforms, CDN)",
+              "Deploy: AWS EC2 (+ Route 53, optional S3), SSL via Nginx"
+            ]
+          },
+          {
+            "title": "Implementation Workflow",
+            "items": [
+              "Modeled product, user, order schemas; added seed scripts",
+              "Built/validated APIs first (Postman), then UI flow (catalog → product → cart → checkout → success)",
+              "Integrated Cloudinary in admin; stored public URLs on product docs",
+              "Implemented Stripe Elements + server client-secret; webhook optional"
+            ]
+          },
+          {
+            "title": "Testing & Quality Assurance",
+            "items": [
+              "Smoke-tested critical API paths (auth, cart, order)",
+              "Walkthroughs for add-to-cart, checkout, order history",
+              "Performance checks (Cloudinary compression, Lighthouse)",
+              "Stripe dashboard for error visibility"
+            ]
+          },
+          {
+            "title": "DevOps & Deployment",
+            "items": [
+              "GitHub flow: feature branches + PRs",
+              "CI: lint/build on push (GitHub Actions)",
+              "Backend on EC2 with PM2 (or Docker); static frontend via EC2/CDN",
+              "Route 53 domain + SSL via Nginx reverse proxy"
+            ]
+          },
+          {
+            "title": "Project Duration (Estimate)",
+            "items": [
+              "Part-time: 6–8 weeks for MVP (FE+BE+payments)",
+              "Plus 2–3 weeks for testing, deployment, refinements"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Features",
+        "items": [
+          "User Authentication: register/login with protected routes",
+          "Product Catalog: category filtering, search, and product detail pages",
+          "Shopping Cart: add/update/remove items with price totals",
+          "Checkout: Stripe-powered secure payments (client secret flow)",
+          "Order History: view past orders and statuses",
+          "Admin Basics: add/edit products, Cloudinary image uploads",
+          "Responsive UI: Tailwind-guided layouts for mobile → desktop",
+          "Notifications: basic toasts for actions & error states"
+        ]
+      },
+      {
+        "heading": "Tools & Technologies",
+        "tags": [
+          "React",
+          "Redux",
+          "Tailwind CSS",
+          "Vite",
+          "Node.js",
+          "Express.js",
+          "MongoDB",
+          "Stripe",
+          "Cloudinary",
+          "AWS EC2",
+          "(Optional) AWS S3",
+          "(Optional) Route 53",
+          "Git",
+          "GitHub"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "anomaly-detector",
+    "title": "Anomaly Detection",
+    "summary": "This project demonstrates an end-to-end Machine Learning solution for detecting fraudulent credit card transactions. It encompasses data preprocessing, model training and optimization, and deployment as a containerized RESTful API. The goal is to identify anomalous transactions that might indicate fraud, leveraging a real-world imbalanced dataset.",
+    "cover": "/projects/dashboard.png",
+    "sections": [
+      {
+        "heading": "Project Brief",
+        "paragraphs": [
+          "This project detects fraudulent credit card transactions using an end-to-end ML workflow: preprocessing, model training/optimization, and deployment as a containerized REST API. It targets real-world class imbalance and optimizes the precision/recall trade-off for the fraud class."
+        ]
+      },
+      {
+        "heading": "Project Duration (Estimate)",
+        "paragraphs": [
+          "Part-time (evenings/weekends): 6–8 weeks"
+        ]
+      },
+      {
+        "heading": "Repositories",
+        "items": [
+          "Frontend: https://github.com/NRicky25/anomaly-frontend",
+          "Backend: https://github.com/NRicky25/anomaly-detector"
+        ],
+        "links": [
+          "https://github.com/NRicky25/anomaly-frontend",
+          "https://github.com/NRicky25/anomaly-detector"
+        ]
+      },
+      {
+        "heading": "Approach",
+        "groups": [
+          {
+            "title": "Planning & Problem Framing",
+            "items": [
+              "Defined the goal: detect fraudulent transactions with high recall while keeping precision practical for review teams",
+              "Identified constraints: severe class imbalance, limited interpretability, need for real-time inference"
+            ]
+          },
+          {
+            "title": "Data Preparation",
+            "items": [
+              "Loaded the public credit-card dataset; separated train/validation/test splits",
+              "Scaled key features (Amount, Time) and preserved the anonymized V1–V28 components as-is",
+              "Applied stratified splits to maintain class ratios across sets"
+            ]
+          },
+          {
+            "title": "Modeling",
+            "items": [
+              "Started with baseline (Logistic Regression) → moved to RandomForest for non-linear boundaries",
+              "Handled imbalance with class_weight and careful cross-validation",
+              "Tracked metrics beyond accuracy: ROC-AUC, PR-AUC, Precision/Recall/F1 on the fraud class"
+            ]
+          },
+          {
+            "title": "Threshold Tuning",
+            "items": [
+              "Optimized the decision threshold for the fraud class (maximize F1 while guarding precision)",
+              "Validated the chosen threshold on a hold-out set to avoid optimistic bias"
+            ]
+          },
+          {
+            "title": "API & Contracts",
+            "items": [
+              "Exported the trained model + scalers with joblib",
+              "Designed FastAPI schemas (Pydantic) for single/batch prediction with strict validation",
+              "Exposed `/predict` and documented with Swagger UI & ReDoc"
+            ]
+          },
+          {
+            "title": "Packaging & Deployment",
+            "items": [
+              "Containerized the service with Docker for reproducible local and cloud runs",
+              "Environment-driven config for thresholds, model paths, and log levels"
+            ]
+          },
+          {
+            "title": "Testing & QA",
+            "items": [
+              "Smoke tests for API routes and schema errors (invalid/missing fields)",
+              "Metric checks to ensure degradation doesn’t slip through (spot-check F1/precision/recall)"
+            ]
+          },
+          {
+            "title": "Monitoring & Next Steps",
+            "items": [
+              "Baseline logging for predictions and errors; plan for drift checks on score distributions",
+              "Future: model retraining pipeline, alerting on metric drops, feature importance reports"
+            ]
+          },
+          {
+            "title": "Project Duration (Estimate)",
+            "items": [
+              "Part-time (evenings/weekends): 6–8 weeks for MVP (data → model → API → Docker)",
+              "Add 2–4 weeks for monitoring, retraining workflow, and CI hardening"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Features",
+        "items": [
+          "Prediction API: FastAPI endpoints for single & batch scoring",
+          "Interactive Docs: Swagger UI (/docs) and ReDoc (/redoc)",
+          "Model Artifacts: joblib-exported model and scalers",
+          "Threshold Tuning: calibrated decision threshold for fraud class",
+          "Validation: Pydantic schemas with robust error responses",
+          "Containerization: Docker image for easy run/deploy",
+          "CI: optional GitHub Actions for lint/build/test"
+        ]
+      },
+      {
+        "heading": "Tools & Technologies",
+        "tags": [
+          "Python 3.10",
+          "scikit-learn",
+          "pandas",
+          "numpy",
+          "joblib",
+          "FastAPI",
+          "uvicorn",
+          "pydantic",
+          "Docker",
+          "Git",
+          "GitHub",
+          "Jupyter Notebook"
+        ]
+      }
+    ]
+  }
+]
