@@ -4,6 +4,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
   return (
     <motion.main
       id="main"
+      className="overflow-x-clip"
       initial={{ opacity: 0, filter: 'blur(12px)', y: 20 }}
       animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
       exit={{ opacity: 0, filter: 'blur(12px)', y: -20 }}

@@ -17,7 +17,7 @@ function Bars({ color }: { color: string }) {
     })
   })
   return (
-    <group rotation={[0.25, -0.5, 0]}>
+    <group rotation={[0.25, -0.5, 0]} scale={0.62} position={[0, -0.1, 0]}>
       {Array.from({ length: 7 }, (_, i) => (
         <mesh key={i} ref={(m) => { refs.current[i] = m }} position={[(i - 3) * 0.55, 0, 0]}>
           <boxGeometry args={[0.38, 1, 0.38]} />
