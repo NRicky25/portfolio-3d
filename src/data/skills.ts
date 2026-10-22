@@ -6,7 +6,7 @@ export const skills: string[] = [
   'NoSQL',
   'ReactJS',
   'NuxtJS',
-  'Machine Learning',
+  'Next.js',
   'FastAPI',
   'Docker',
 ]
