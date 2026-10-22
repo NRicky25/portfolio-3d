@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --violet: #8b5cf6;
+  --cyan: #22d3ee;
+  --space: #05050f;
+}
+
+html {
+  background: var(--space);
+  color: #e4e4f0;
+  -webkit-font-smoothing: antialiased;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  font-family: Inter, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(139, 92, 246, 0.45);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (pointer: fine) {
+  body.has-cursor,
+  body.has-cursor a,
+  body.has-cursor button {
+    cursor: none;
+  }
+}
+
+/* subtle film grain over everything */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, #c4b5fd 0%, var(--violet) 40%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass {
+  background: rgba(16, 14, 36, 0.55);
+  border: 1px solid rgba(167, 139, 250, 0.16);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* ---------- Hero name reveal + glitch ---------- */
+.char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40%) skewX(-12deg);
+  filter: blur(8px);
+  animation: char-in 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+@keyframes char-in {
+  40% {
+    text-shadow: -3px 0 var(--cyan), 3px 0 #f472b6;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    text-shadow: none;
+  }
+}
+
+.glitch {
+  position: relative;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+.glitch::before {
+  color: var(--cyan);
+  animation: glitch-a 6s infinite steps(1);
+}
+.glitch::after {
+  color: #f472b6;
+  animation: glitch-b 6s infinite steps(1);
+}
+@keyframes glitch-a {
+  0%, 91%, 100% { opacity: 0; transform: none; clip-path: inset(0 0 0 0); }
+  92% { opacity: 0.8; transform: translate(-4px, 1px); clip-path: inset(10% 0 60% 0); }
+  94% { opacity: 0.8; transform: translate(3px, -2px); clip-path: inset(55% 0 20% 0); }
+  96% { opacity: 0.8; transform: translate(-2px, 0); clip-path: inset(30% 0 40% 0); }
+}
+@keyframes glitch-b {
+  0%, 92%, 100% { opacity: 0; transform: none; clip-path: inset(0 0 0 0); }
+  93% { opacity: 0.7; transform: translate(4px, 0); clip-path: inset(70% 0 5% 0); }
+  95% { opacity: 0.7; transform: translate(-3px, 2px); clip-path: inset(5% 0 75% 0); }
+}
+
+/* ---------- Project card ---------- */
+.tilt {
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 50%;
+  --my: 50%;
+  transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.tilt.is-active {
+  transition: transform 0.08s linear;
+}
+.tilt .holo {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background:
+    radial-gradient(circle at var(--mx) var(--my), rgba(255, 255, 255, 0.18), transparent 40%),
+    linear-gradient(115deg, transparent 20%, rgba(34, 211, 238, 0.18) 40%, rgba(244, 114, 182, 0.16) 55%, rgba(139, 92, 246, 0.18) 70%, transparent 85%);
+  background-size: 100% 100%, 250% 250%;
+  background-position: center, var(--mx) var(--my);
+  mix-blend-mode: screen;
+}
+.tilt:hover .holo,
+.tilt:focus-visible .holo {
+  opacity: 1;
+}
+.tilt .pop {
+  transform: translateZ(40px);
+}
+
+/* ---------- Loader ---------- */
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+}

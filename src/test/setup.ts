@@ -15,3 +15,23 @@ if (!window.matchMedia) {
     }) as MediaQueryList
 }
 window.scrollTo = () => {}
+
+// jsdom lacks IntersectionObserver (used by framer-motion whileInView and our in-view hook).
+class IO {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+  takeRecords() {
+    return []
+  }
+}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+;(window as any).IntersectionObserver = IO
+
+// jsdom lacks ResizeObserver (used by Lenis).
+class RO {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+;(window as any).ResizeObserver = RO
