@@ -41,7 +41,7 @@ export default function Contact() {
         <h2 className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-7xl">
           Let&apos;s build something <span className="text-gradient">intelligent</span> together.
         </h2>
-        <p className="mx-auto mt-6 max-w-xl text-zinc-400">
+        <p className="mx-auto mt-6 max-w-xl text-zinc-200 [text-shadow:0_1px_12px_rgba(5,5,15,0.9)]">
           Let&apos;s connect to explore tailored solutions that drive your success and transform your ideas into reality.
         </p>
         <div className="mt-10 flex justify-center">

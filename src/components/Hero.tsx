@@ -61,6 +61,8 @@ export default function Hero() {
       )}
       {/* fade the network into the next section */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-space" />
+      {/* dark scrim behind the text column so the network never fights the copy */}
+      <div className="pointer-events-none absolute inset-0 bg-space/55 md:bg-transparent md:bg-gradient-to-r md:from-space/90 md:via-space/55 md:to-transparent" />
 
       <div className="pointer-events-none relative z-10 mx-auto w-full max-w-6xl px-5 pt-24 md:px-8">
         <motion.p
@@ -98,7 +100,7 @@ export default function Hero() {
         </motion.p>
 
         <motion.p
-          className="mt-6 max-w-xl text-base leading-relaxed text-zinc-400 md:text-lg"
+          className="mt-6 max-w-xl text-base leading-relaxed text-zinc-200 [text-shadow:0_1px_12px_rgba(5,5,15,0.9)] md:text-lg"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: delay + 0.9, duration: 0.8 }}
